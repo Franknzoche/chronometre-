@@ -4,13 +4,13 @@ var sp , btn_start , btn_stop , t , ms , s , mn , h;
 window.onload = function(){
     sp = document.getElementsByTagName('span');
     btn_start = document.getElementById("Start");
-    btn_stop = document.getElementById("stop");
+    btn_stop = document.getElementById("Stop");
     t;
     ms = 0 , s = 0 , min = 0 , h = 0 ;
 }
 // mettre en place le compteur
 
-function update_chrono(){
+function update_chrono(){// incrementer les millisecondes
     ms+=1;
     if (ms == 10){
         ms=1;
@@ -37,4 +37,21 @@ function update_chrono(){
 function start(){
     t = setInterval(update_chrono,100);//execute la fomction update_chrono toute les 100ms
     btn_start.disabled = true;
+}
+    // mettre en place la fonctions du bouton stop
+function stop(){
+    clearInterval(t);// arreter l'execution de la fonction update_chrono
+    btn_start.disabled = false;// activer le bouton start
+}     
+// mettre en place la fonctions du bouton reset
+function reset(){
+    clearInterval(t);// arreter l'execution de la fonction update_chrono
+    h = 0;
+    min = 0;
+    s = 0;
+    ms = 0;
+    sp[0].innerHTML = h + "h";
+    sp[1].innerHTML = min + "min";
+    sp[2].innerHTML = s + "s";
+    sp[3].innerHTML = ms + "ms";
 }
